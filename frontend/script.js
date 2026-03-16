@@ -20,7 +20,20 @@ else{
 response = "Stay active, exercise regularly, and maintain a healthy diet.";
 }
 
-document.getElementById("response").innerText = "AI Fitness Coach: " + response;
+let chatMessages = document.getElementById("chatMessages");
+
+// user message
+let userMsg = document.createElement("p");
+userMsg.className = "user-message";
+userMsg.innerText = userMessage;
+chatMessages.appendChild(userMsg);
+
+// bot message
+let botMsg = document.createElement("p");
+botMsg.className = "bot-message";
+botMsg.innerText = "AI Fitness Coach: " + response;
+chatMessages.appendChild(botMsg);
+
 document.getElementById("userInput").value = "";
 
 }
