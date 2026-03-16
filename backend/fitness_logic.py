@@ -3,16 +3,16 @@ def get_fitness_response(message):
     message = message.lower()
 
     if "weight loss" in message:
-        return "For weight loss, do cardio 30 minutes daily and maintain a calorie deficit."
+        return "To lose weight, try doing cardio exercises for 30 minutes daily."
 
     elif "muscle" in message:
-        return "For muscle gain, focus on strength training and increase protein intake."
+        return "For muscle gain, focus on strength training and eat high protein foods."
 
     elif "diet" in message:
-        return "A balanced diet should include protein, vegetables, healthy fats and complex carbs."
+        return "A healthy diet includes protein, vegetables, fruits and whole grains."
 
     elif "workout" in message:
-        return "Beginner workout: pushups, squats, lunges and light cardio."
+        return "Beginner workout: push-ups, squats, lunges and 20 minutes cardio."
 
     else:
-        return "Stay active, exercise regularly and maintain a healthy diet."
+        return "Stay active and exercise regularly to maintain good fitness."
