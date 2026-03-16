@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from fitness_logic import get_fitness_response
 
 app = Flask(__name__)
 
@@ -13,6 +14,8 @@ def chat():
     data = request.json
     message = data.get("message")
 
+    response = get_fitness_response(message)
+
     return jsonify({
-        "reply": "Backend received message: " + message
+        "reply": response
     })
