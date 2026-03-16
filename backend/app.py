@@ -9,6 +9,12 @@ CORS(app)
 def home():
     return "AI Fitness Chatbot Backend Running"
 
+@app.route("/health")
+def health():
+    return {
+        "status": "Backend is running"
+    }
+
 
 @app.route("/chat", methods=["POST"])
 def chat():
