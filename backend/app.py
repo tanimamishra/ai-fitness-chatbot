@@ -13,11 +13,22 @@ def home():
 @app.route("/chat", methods=["POST"])
 def chat():
 
-    data = request.json
-    message = data.get("message")
+    try:
+        data = request.json
+        message = data.get("message")
 
-    response = get_fitness_response(message)
+        if not message:
+            return jsonify({
+                "reply": "Please enter a fitness question."
+            })
 
-    return jsonify({
-        "reply": response
-    })
+        response = get_fitness_response(message)
+
+        return jsonify({
+            "reply": response
+        })
+
+    except Exception as e:
+        return jsonify({
+            "reply": "An error occurred while processing the request."
+        })
