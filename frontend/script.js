@@ -1,39 +1,34 @@
-function sendMessage(){
+async function sendMessage(){
 
-let userMessage = document.getElementById("userInput").value.toLowerCase();
+    let userMessage = document.getElementById("userInput").value;
 
-let response = "";
+    let chatMessages = document.getElementById("chatMessages");
 
-if(userMessage.includes("weight loss")){
-response = "For weight loss: do cardio 30 minutes daily and maintain a calorie deficit.";
-}
+    // Show user message
+    let userMsg = document.createElement("p");
+    userMsg.className = "user-message";
+    userMsg.innerText = userMessage;
+    chatMessages.appendChild(userMsg);
 
-else if(userMessage.includes("muscle")){
-response = "For muscle gain: focus on strength training and eat high protein foods.";
-}
+    // Call backend API
+    let response = await fetch("http://127.0.0.1:5000/chat", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            message: userMessage
+        })
+    });
 
-else if(userMessage.includes("diet")){
-response = "A balanced diet includes protein, healthy fats, and complex carbs.";
-}
+    let data = await response.json();
 
-else{
-response = "Stay active, exercise regularly, and maintain a healthy diet.";
-}
+    // Show bot response
+    let botMsg = document.createElement("p");
+    botMsg.className = "bot-message";
+    botMsg.innerText = "AI Fitness Coach: " + data.reply;
+    chatMessages.appendChild(botMsg);
 
-let chatMessages = document.getElementById("chatMessages");
-
-// user message
-let userMsg = document.createElement("p");
-userMsg.className = "user-message";
-userMsg.innerText = userMessage;
-chatMessages.appendChild(userMsg);
-
-// bot message
-let botMsg = document.createElement("p");
-botMsg.className = "bot-message";
-botMsg.innerText = "AI Fitness Coach: " + response;
-chatMessages.appendChild(botMsg);
-
-document.getElementById("userInput").value = "";
-
+    // Clear input
+    document.getElementById("userInput").value = "";
 }
